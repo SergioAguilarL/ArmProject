@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.12)
 
 # Project Definition
-project(BlinkingLed)
+project(ArmProject)
 
 # Set output directories
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
@@ -75,8 +75,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${APP_DIR} ${CMSIS_INCLUDE_DI
 target_compile_options(${PROJECT_NAME} PRIVATE
     ${CPU_PARAMETERS}
     -Wall -Wextra -Wpedantic -Wno-unused-parameter
-    $<$<CONFIG:Debug>:-Og -g3 -ggdb>
-    $<$<CONFIG:Release>:-Og -g0>)
+    )
 
 # Linker Options
 target_link_options(${PROJECT_NAME} PRIVATE

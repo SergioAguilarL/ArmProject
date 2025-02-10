@@ -48,13 +48,6 @@
 #define SRAM_END        ((SRAM_START) + (SRAM_SIZE))
 #define STACK_START     SRAM_END
 
-extern uint32_t _etext;
-extern uint32_t _sdata;
-extern uint32_t _edata;
-extern uint32_t _sbss;
-extern uint32_t _ebss;
-
-extern int main(void);
 
 void Reset_Handler(void);
 void NMI_Handler(void)                          __attribute__((weak,alias("Default_handler")));
@@ -272,29 +265,29 @@ void Default_handler(void)
     while(1);
 }
 
+extern uint32_t _etext, _sdata, _edata, _sbss, _ebss;
+void main(void);
+
 void Reset_Handler(void)
 {
-    /*Copying .data form flash to SRAM*/
-    uint32_t datSize = (uint32_t)&_edata - (uint32_t)&_sdata; 
+  // Copy .data from FLASH to SRAM
+  uint32_t data_size = (uint32_t)&_edata - (uint32_t)&_sdata;
+  uint8_t *flash_data = (uint8_t*) &_etext;
+  uint8_t *sram_data = (uint8_t*) &_sdata;
+  
+  for (uint32_t i = 0; i < data_size; i++)
+  {
+    sram_data[i] = flash_data[i];
+  }
 
-    uint8_t *startSRAM = (uint8_t*)&_sdata; /*SRAM*/
-    uint8_t *endFlash = (uint8_t*)&_etext; /*FLASH*/
-       
-    for(uint32_t index = 0 ; index < datSize; index++)
-    {
-        startSRAM[index] = endFlash[index];
-    }
+  // Zero-fill .bss section in SRAM
+  uint32_t bss_size = (uint32_t)&_ebss - (uint32_t)&_sbss;
+  uint8_t *bss = (uint8_t*) &_sbss;
 
-    /*Initilizing to 0 the bss section*/
-    uint32_t bssSize = (uint32_t)&_ebss - (uint32_t)&_sbss; 
-
-    uint8_t *bss = (uint8_t*) &_sbss;
-
-    for(uint32_t index = 0; index <bssSize ;index++)
-    {
-        bss[index] = 0; 
-    }
-
-    main();
-
+  for (uint32_t i = 0; i < bss_size; i++)
+  {
+    bss[i] = 0;
+  }
+  
+  main();
 }
