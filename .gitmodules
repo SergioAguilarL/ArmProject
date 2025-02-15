@@ -1,6 +1,12 @@
-[submodule "CMSIS"]
-	path = CMSIS
-	url = https://github.com/ARM-software/CMSIS_5
-[submodule "STM32F4"]
-	path = STM32F4
-	url = https://github.com/STMicroelectronics/cmsis_device_f4
+[submodule "Driver/STM32fxx_HAL"]
+	path = Driver/STM32fxx_HAL
+	url = https://github.com/STMicroelectronics/stm32f4xx-hal-driver.git
+[submodule "Driver/CMSIS"]
+	path = Driver/CMSIS
+	url = https://github.com/ARM-software/CMSIS_5.git
+[submodule "Driver/STM32F4"]
+	path = Driver/STM32F4
+	url = https://github.com/STMicroelectronics/cmsis-device-f4.git
+[submodule "Driver/STM32F429_BSP"]
+	path = Driver/STM32F429_BSP
+	url = https://github.com/STMicroelectronics/32f429idiscovery-bsp.git
