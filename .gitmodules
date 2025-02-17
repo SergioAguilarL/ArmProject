@@ -10,3 +10,15 @@
 [submodule "Driver/STM32F429_BSP"]
 	path = Driver/STM32F429_BSP
 	url = https://github.com/STMicroelectronics/32f429idiscovery-bsp.git
+[submodule "Driver/Components/Common"]
+	path = Driver/Components/Common
+	url = https://github.com/STMicroelectronics/stm32-bsp-common.git
+[submodule "Driver/Components/ili9341"]
+	path = Driver/Components/ili9341
+	url = https://github.com/STMicroelectronics/stm32-ili9341.git
+[submodule "Driver/Components/l3dg20"]
+	path = Driver/Components/l3dg20
+	url = https://github.com/STMicroelectronics/stm32-l3gd20.git
+[submodule "Driver/Components/stmpe811"]
+	path = Driver/Components/stmpe811
+	url = https://github.com/STMicroelectronics/stm32-stmpe811.git
