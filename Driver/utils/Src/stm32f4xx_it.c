@@ -1,14 +1,4 @@
-/**
-  ******************************************************************************
-  * @file    LTDC/LTDC_Display_2Layers/Src/stm32f4xx_it.c 
-  * @author  MCD Application Team
-  * @brief   Main Interrupt Service Routines.
-  *          This file provides template for all exceptions handler and 
-  *          peripherals interrupt service routine.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2017 STMicroelectronics.
+/** Copyright (c) 2017 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -31,8 +21,6 @@
   */
 
 /* Private typedef -----------------------------------------------------------*/
-extern LTDC_HandleTypeDef            LtdcHandle;
-
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
@@ -155,7 +143,7 @@ void SysTick_Handler(void)
   */
 void LTDC_IRQHandler(void)
 {
-  HAL_LTDC_IRQHandler(&LtdcHandle);
+  
 }
 
 /**
