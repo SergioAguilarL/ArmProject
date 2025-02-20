@@ -72,6 +72,22 @@ set(STM32F4XX_BSP_INC_DIRS
 
 )
 
+set(STM32F4XX_COMMON_COMPONENTS_INC_DIR 
+    ${CMAKE_CURRENT_SOURCE_DIR}/Driver/Components/Common
+)
+
+set(STM32F4XX_ILI9341_COMPONENTS_INC_DIR 
+    ${CMAKE_CURRENT_SOURCE_DIR}/Driver/Components/ili9341
+)
+
+set(STM32F4XX_L3DG20_COMPONENTS_INC_DIR 
+    ${CMAKE_CURRENT_SOURCE_DIR}/Driver/Components/l3dg20
+)
+
+set(STM32F4XX_STMPE811_COMPONENTS_INC_DIR 
+    ${CMAKE_CURRENT_SOURCE_DIR}/Driver/Components/stmpe811
+)
+
 # Add Driver APP Headers
 
 set(APP_INC_DIRS 
@@ -126,6 +142,19 @@ file(GLOB_RECURSE STM32F4XX_BSP_SRC_DIR FOLLOW_SYMLINKS ${STM32F4XX_BSP_SRC_DIR}
 # BSP FILTER gryo driver no available for STM32F429i
 list( FILTER STM32F4XX_BSP_SRC_DIR EXCLUDE REGEX ".*(stm32f429i_discovery_gyroscope\\.c)$")
 
+#Common Components Source Directories
+set(STM32F4XX_COMMON_COMPONENTS_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Driver/Components/Common)
+file(GLOB_RECURSE STM32F4XX_COMMON_COMPONENTS_SRC_DIR FOLLOW_SYMLINKS ${STM32F4XX_COMMON_COMPONENTS_SRC_DIR}/*.c)
+
+set(STM32F4XX_ILI9341_COMPONENTS_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Driver/Components/ili9341)
+file(GLOB_RECURSE STM32F4XX_ILI9341_COMPONENTS_SRC_DIR FOLLOW_SYMLINKS ${STM32F4XX_ILI9341_COMPONENTS_SRC_DIR}/*.c)
+
+set(STM32F4XX_L3GD20_COMPONENTS_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Driver/Components/l3gd20)
+file(GLOB_RECURSE STM32F4XX_L3GD20_COMPONENTS_SRC_DIR FOLLOW_SYMLINKS ${STM32F4XX_L3GD20_COMPONENTS_SRC_DIR}/*.c)
+
+set(STM32F4XX_STMPE811_COMPONENTS_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Driver/Components/stmp811)
+file(GLOB_RECURSE STM32F4XX_STMPE811_COMPONENTS_SRC_DIR FOLLOW_SYMLINKS ${STM32F4XX_STMPE811_COMPONENTS_SRC_DIR}/*.c)
+
 ##################################################################################################################################
 ################################################## Executable Definition  ########################################################
 ##################################################################################################################################
@@ -137,6 +166,10 @@ add_executable(${PROJECT_NAME}
     ${UTILS_SOURCES}
     ${STM32F4XX_HAL_SRC_DIR}
     ${STM32F4XX_BSP_SRC_DIR}
+    ${STM32F4XX_COMMON_COMPONENTS_SRC_DIR}
+    ${STM32F4XX_ILI9341_COMPONENTS_SRC_DIR}
+    ${STM32F4XX_L3GD20_COMPONENTS_SRC_DIR}
+    ${STM32F4XX_STMPE811_COMPONENTS_SRC_DIR}
     ${STARTUP_SCRIPT})
 
 
@@ -144,7 +177,9 @@ add_executable(${PROJECT_NAME}
 ##################################################  Include Directories  #########################################################
 ##################################################################################################################################
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${APP_DIR} ${CMSIS_INCLUDE_DIRS} ${STM32F429_INCLUDE_DIR} ${STM32F4XX_HAL_INC_DIRS} ${APP_INC_DIRS} ${STM32F4XX_BSP_INC_DIRS} ${UTILS_INC_DIRS})
+target_include_directories(${PROJECT_NAME} PRIVATE ${APP_DIR} ${CMSIS_INCLUDE_DIRS} ${STM32F429_INCLUDE_DIR} ${STM32F4XX_HAL_INC_DIRS} ${APP_INC_DIRS} ${STM32F4XX_BSP_INC_DIRS} ${UTILS_INC_DIRS} 
+                                ${STM32F4XX_COMMON_COMPONENTS_INC_DIR} ${STM32F4XX_ILI9341_COMPONENTS_INC_DIR} ${STM32F4XX_L3DG20_COMPONENTS_INC_DIR} ${STM32F4XX_STMPE811_COMPONENTS_INC_DIR}
+    )
 
 
 ##################################################################################################################################
